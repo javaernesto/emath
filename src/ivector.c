@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
-#include "ivector.h"
+#include "../include/ivector.h"
 
 
 /**
@@ -211,7 +211,7 @@ double imnorm(imatrix *mat, unsigned int p) {
  * @param n size of vector 
  * @return *ivector
  */
-ivector *ones(size_t n) {
+ivector *iones(size_t n) {
 
 	ivector *v = init_ivector(n);
 
@@ -226,7 +226,7 @@ ivector *ones(size_t n) {
  * @param n size of identity imatrix
  * @return *imatrix 
  */
-imatrix *eye(size_t n) {
+imatrix *ieye(size_t n) {
 
 	imatrix *mat = init_imatrix(n, n);
 
@@ -241,7 +241,7 @@ imatrix *eye(size_t n) {
  * @param v integer vector to appear on the diagonal
  * @return *imatrix
  */
-imatrix *diag(ivector *v) {
+imatrix *idiag(ivector *v) {
 
 	imatrix *mat = init_imatrix(v->n, v->n);
 
@@ -258,7 +258,7 @@ imatrix *diag(ivector *v) {
  * @param b integer vector b
  * @return double 
  */
-long vdot(ivector *v1, ivector *v2) {
+long ivdot(ivector *v1, ivector *v2) {
 
 	double prod = 0;
 
@@ -358,9 +358,11 @@ imatrix *immul(imatrix *A, imatrix *B) {
     return C;
 }
 
+/*
+
 int main() {
 
-    /* TESTING */
+    // TESTING
 
 	long v1[5] = {8, 2, 3, 4, 5};
 	long v2[5] = {3, 0, 4, 0, 0};
@@ -393,4 +395,4 @@ int main() {
 	free_imatrix(mat);
 
 	return 0;
-}
+} */

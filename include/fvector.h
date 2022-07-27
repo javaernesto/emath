@@ -50,12 +50,12 @@ double fvnorm(fvector *v, unsigned int p);
 
 double fmnorm(fmatrix *mat, unsigned int p);
 
-fvector *ones(size_t n);
+fvector *fones(size_t n);
 
-fmatrix *eye(size_t n);
+fmatrix *feye(size_t n);
 
-fmatrix *diag(fvector *v);
+fmatrix *fdiag(fvector *v);
 
-double vdot(fvector *v1, fvector *v2);
+double fvdot(fvector *v1, fvector *v2);
 
 #endif

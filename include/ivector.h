@@ -53,17 +53,17 @@ double ivnorm(ivector *v, unsigned int p);
 
 double imnorm(imatrix *mat, unsigned int p);
 
-ivector *ones(size_t n);
+ivector *iones(size_t n);
 
-imatrix *eye(size_t n);
+imatrix *ieye(size_t n);
 
-imatrix *diag(ivector *v);
+imatrix *idiag(ivector *v);
 
 ivector *ivadd(ivector *a, ivector *b);
 
 imatrix *imadd(imatrix *A, imatrix *B);
 
-long vdot(ivector *v1, ivector *v2);
+long ivdot(ivector *v1, ivector *v2);
 
 long itrace(imatrix *A);
 

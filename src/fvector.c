@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
-#include "fvector.h"
+#include "../include/fvector.h"
 
 
 /**
@@ -220,8 +220,7 @@ double fmnorm(fmatrix *mat, unsigned int p) {
  * @param n - size n
  * @return *fvector
  */
-
-fvector *ones(size_t n) {
+fvector *fones(size_t n) {
 
 	fvector *v = init_fvector(n);
 
@@ -236,8 +235,7 @@ fvector *ones(size_t n) {
  * @param n - size of identity fmatrix
  * @return *fmatrix 
  */
-
-fmatrix *eye(size_t n) {
+fmatrix *feye(size_t n) {
 
 	fmatrix *mat = init_fmatrix(n, n);
 
@@ -252,8 +250,7 @@ fmatrix *eye(size_t n) {
  * @param v - fvector to appear on the diagonal
  * @return *fmatrix
  */
-
-fmatrix *diag(fvector *v ) {
+fmatrix *fdiag(fvector *v ) {
 
 	fmatrix *mat = init_fmatrix(v->n, v->n);
 
@@ -270,8 +267,7 @@ fmatrix *diag(fvector *v ) {
  * @param b - fvector b
  * @return double 
  */
-
-double vdot(fvector *v1, fvector *v2) {
+double fvdot(fvector *v1, fvector *v2) {
 
 	double prod = 0;
 
@@ -286,7 +282,7 @@ double vdot(fvector *v1, fvector *v2) {
 
 int main() {
 
-    /* TESTING */
+    // TESTING
 
 	double v1[5] = {8.1, 2.4, 3.1, 4.9, 5.2};
 	double v2[5] = {3, 0, 4.55, 0, 0};
@@ -294,9 +290,9 @@ int main() {
 	fvector *a = to_fvector(v1, 5);
 	fvector *b = to_fvector(v2, 5);
 
-	printf("vdot %f \n", vdot(a, b));
+	printf("ivdot %f \n", fvdot(a, b));
 
-	fmatrix *mat = diag(a);
+	fmatrix *mat = fdiag(a);
 	for (size_t i = 0; i < mat->n; i++) {
 		for (size_t j = 0; j < mat->m; j++)
 			printf("%f ", (((mat->val)[i]))[j]);
