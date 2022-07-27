@@ -1,2 +1,5 @@
-# emath
-Extended C mathematical library
+# Extended C mathematical library
+
+## How to compile
+
+Hello.
