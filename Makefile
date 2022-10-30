@@ -15,7 +15,23 @@ OBJECTS = $(SOURCES:.c=.o)
 PREFIX = $(DESTDIR)/usr/local
 BINDIR = $(PREFIX)/bin
 
-all: $(TARGET)
+
+
+all: $(TARGET) test-ivector test-fvector
 
 $(TARGET): $(OBJECTS) 
-	$(CC) $(FLAGS) $(CFLAGS) $(DEBUGFLAGS) -o $(TARGET) $(OBJECTS) $(INCLUDEFLAGS)
+	$(CC) $(FLAGS) $(CFLAGS) $(DEBUGFLAGS) -o $@ $^ $(INCLUDEFLAGS) $(LDFLAGS)
+
+test-ivector: tests/test-ivector.o $(OBJECTS)
+	$(CC) $(FLAGS) $(CFLAGS) $(DEBUGFLAGS) -o $@ $^ $(INCLUDEFLAGS)
+
+test-fvector: tests/test-fvector.o $(OBJECTS)
+	$(CC) $(FLAGS) $(CFLAGS) $(DEBUGFLAGS) -o $@ $^ $(INCLUDEFLAGS)
+
+
+.PHONY: clean
+clean:
+	rm -f $(TARGET)
+	rm -f test-ivector
+	rm -f test-fvector
+	rm -f src/*.o
