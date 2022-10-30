@@ -64,9 +64,7 @@ void fprint_fmatrix(FILE *fp, fmatrix *A);
 
 fmatrix *read_fcsv(char *filename);
 
-int fvtofile(fvector *v, const char *filename);
-
-int fmtofile(fmatrix *M, const char *filename);
+void free_fmatrix(fmatrix *my_matrix);
 
 fvector *to_fvector(double *vals, size_t n);
 

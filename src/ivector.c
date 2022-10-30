@@ -78,6 +78,10 @@ void free_icsr(icsr *my_icsr) {
 	free(my_icsr->x);
 	free(my_icsr->y);
 	free(my_icsr->val);
+
+	my_icsr->x = NULL;
+	my_icsr->y = NULL;
+	my_icsr->val = NULL;
 	
 	free(my_icsr);
 }
@@ -90,6 +94,8 @@ void free_icsr(icsr *my_icsr) {
 void free_ivector(ivector *v) {
 
 	free(v->val);
+
+	v->val = NULL;
 
 	free(v);
 
@@ -106,10 +112,13 @@ void free_ivector(ivector *v) {
 void free_imatrix(imatrix *mat) {
 	
 	for (size_t i = 0; i < mat->n; i++)
+	{
 		free(mat->val[i]);
-
+		mat->val[i] = NULL;
+	}
 	free(mat->val);
-
+	mat->val = NULL;
+	
 	free(mat);
 
 	#ifdef FREE

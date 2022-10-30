@@ -79,9 +79,13 @@ void free_fcsr(fcsr *my_fcsr) {
 	
 	/* Free fcsr structure */
 	
-	free(my_fcsr->x);
+	free(my_fcsr->x);	
 	free(my_fcsr->y);
 	free(my_fcsr->val);
+
+	my_fcsr->x = NULL;
+	my_fcsr->y = NULL;
+	my_fcsr->val = NULL;
 	
 	free(my_fcsr);
 }
@@ -95,6 +99,9 @@ void free_fcsr(fcsr *my_fcsr) {
 void free_fvector(fvector *v) {
 
 	free(v->val);
+
+	// for security reasons
+	v->val = NULL;
 
 	free(v);
 
@@ -112,8 +119,16 @@ void free_fvector(fvector *v) {
 void free_fmatrix(fmatrix *mat) {
 	
 	for (size_t i = 0; i < mat->n; i++)
+	{
 		free(mat->val[i]);
+
+		// for security reasons
+		mat->val[i] = NULL;
+	}
 	free(mat->val);
+
+	// for security reasons
+	mat->val = NULL;
 	
 	free(mat);
 
@@ -657,7 +672,6 @@ double fvdot(fvector *v1, fvector *v2) {
 
 	return prod;
 }
-
 /**
  * @brief return matrix addition of two double matrices
  * @param A double matrix A
