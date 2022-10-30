@@ -35,3 +35,4 @@ clean:
 	rm -f test-ivector
 	rm -f test-fvector
 	rm -f src/*.o
+	rm -f tests/*.o
