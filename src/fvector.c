@@ -78,9 +78,13 @@ void free_fcsr(fcsr *my_fcsr) {
 	
 	/* Free fcsr structure */
 	
-	free(my_fcsr->x);
+	free(my_fcsr->x);	
 	free(my_fcsr->y);
 	free(my_fcsr->val);
+
+	my_fcsr->x = NULL;
+	my_fcsr->y = NULL;
+	my_fcsr->val = NULL;
 	
 	free(my_fcsr);
 }
@@ -95,6 +99,9 @@ void free_fvector(fvector *v) {
 
 	free(v->val);
 
+	// for security reasons
+	v->val = NULL;
+
 	free(v);
 }
 
@@ -107,8 +114,16 @@ void free_fvector(fvector *v) {
 void free_fmatrix(fmatrix *mat) {
 	
 	for (size_t i = 0; i < mat->n; i++)
+	{
 		free(mat->val[i]);
+
+		// for security reasons
+		mat->val[i] = NULL;
+	}
 	free(mat->val);
+
+	// for security reasons
+	mat->val = NULL;
 	
 	free(mat);
 }
@@ -278,33 +293,4 @@ double fvdot(fvector *v1, fvector *v2) {
         prod += (v1->val)[i] * (v2->val)[i];
 
 	return prod;
-}
-
-int main() {
-
-    // TESTING
-
-	double v1[5] = {8.1, 2.4, 3.1, 4.9, 5.2};
-	double v2[5] = {3, 0, 4.55, 0, 0};
-
-	fvector *a = to_fvector(v1, 5);
-	fvector *b = to_fvector(v2, 5);
-
-	printf("ivdot %f \n", fvdot(a, b));
-
-	fmatrix *mat = fdiag(a);
-	for (size_t i = 0; i < mat->n; i++) {
-		for (size_t j = 0; j < mat->m; j++)
-			printf("%f ", (((mat->val)[i]))[j]);
-		printf("\n");
-	}
-
-    printf("norm a = %.3f\n", fvnorm(a, 0));
-    printf("norm b = %.3f\n", fvnorm(b, 2));
-
-	free_fvector(a);
-    free_fvector(b);
-	free_fmatrix(mat);
-
-	return 0;
 }

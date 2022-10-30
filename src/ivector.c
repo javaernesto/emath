@@ -77,6 +77,10 @@ void free_icsr(icsr *my_icsr) {
 	free(my_icsr->x);
 	free(my_icsr->y);
 	free(my_icsr->val);
+
+	my_icsr->x = NULL;
+	my_icsr->y = NULL;
+	my_icsr->val = NULL;
 	
 	free(my_icsr);
 }
@@ -90,6 +94,8 @@ void free_ivector(ivector *v) {
 
 	free(v->val);
 
+	v->val = NULL;
+
 	free(v);
 }
 
@@ -101,8 +107,12 @@ void free_ivector(ivector *v) {
 void free_imatrix(imatrix *mat) {
 	
 	for (size_t i = 0; i < mat->n; i++)
+	{
 		free(mat->val[i]);
+		mat->val[i] = NULL;
+	}
 	free(mat->val);
+	mat->val = NULL;
 	
 	free(mat);
 }
@@ -357,42 +367,3 @@ imatrix *immul(imatrix *A, imatrix *B) {
 
     return C;
 }
-
-/*
-
-int main() {
-
-    // TESTING
-
-	long v1[5] = {8, 2, 3, 4, 5};
-	long v2[5] = {3, 0, 4, 0, 0};
-
-	ivector *a = to_ivector(v1, 5);
-	ivector *b = to_ivector(v2, 5);
-
-    ivector *c = ivadd(a, b);
-
-	printf("vdot %ld \n", vdot(a, b));
-
-    for (size_t i = 0; i < c->n; i++) {
-        printf("%ld ", (c->val)[i]);
-    }
-    printf("\n");
-
-	imatrix *mat = diag(a);
-	for (size_t i = 0; i < mat->n; i++) {
-		for (size_t j = 0; j < mat->m; j++)
-			printf("%ld ", (((mat->val)[i]))[j]);
-		printf("\n");
-	}
-
-    printf("norm a = %.3f\n", ivnorm(a, 0));
-    printf("norm b = %.3f\n", ivnorm(b, 2));
-
-	free_ivector(a);
-    free_ivector(b);
-    free_ivector(c);
-	free_imatrix(mat);
-
-	return 0;
-} */

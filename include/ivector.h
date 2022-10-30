@@ -43,9 +43,9 @@ ivector *init_ivector(size_t n);
 
 void free_csr(icsr *my_csr);
 
-void free_matrix(imatrix *my_matrix);
+void free_imatrix(imatrix *my_matrix);
 
-void free_vector(ivector *my_vector);
+void free_ivector(ivector *my_vector);
 
 ivector *to_ivector(long *vals, size_t n);
 

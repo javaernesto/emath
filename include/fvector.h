@@ -40,11 +40,11 @@ fvector *init_fvector(size_t n);
 
 void free_csr(fcsr *my_csr);
 
-void free_matrix(fmatrix *my_matrix);
+void free_fmatrix(fmatrix *my_matrix);
 
-void free_vector(fvector *my_vector);
+void free_fvector(fvector *my_vector);
 
-fvector *to_vector(double *vals, size_t n);
+fvector *to_fvector(double *vals, size_t n);
 
 double fvnorm(fvector *v, unsigned int p);
 
